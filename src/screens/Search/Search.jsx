@@ -1,22 +1,41 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
+import SearchItem from "../../components/SearchItem/SearchItem.jsx";
 import axios from "axios";
+import { fetchSearch } from "../../services/apiCalls.js";
 import "./Search.css"; 
 
-const base = "https://api.discogs.com";
+
 
 function Search({ handleSubmit }) {
+  // get the Params form the url
   const {term, page} = useParams();
-  // on mount
+  // useStates
+  const [searchResults, setSearchResults] = useState([]);
+
+
+
+  // when a term or page is updated
   useEffect(() => {
-    console.log("term", term);
-    console.log("page", page);
+    setSearchResults( fetchSearch(term, page) );
+    console.log("search results",searchResults);
+
   },[term,page])
 
   return (
     <div id="root-Search">
       <SearchBar handleSubmit={handleSubmit} /> 
+      <div id="gallery-Search">
+        {/* {
+          (searchResults) ?
+            searchResults.map((item) => (
+            <SearchItem item={item}/>
+            ))
+          :
+            null
+        } */}
+      </div>
     </div>
   )
 }
