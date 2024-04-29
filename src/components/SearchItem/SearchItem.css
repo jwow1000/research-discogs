@@ -12,9 +12,10 @@
 }
 
 #imgContainer-SearchItem {
-  object-fit: contain;
+  object-fit: scale-down;
   max-width: 90%;
   max-height: 90%;
+  overflow: clip;
   
 }
 
@@ -34,7 +35,7 @@
 }
 
 #img-SearchItem {
-  object-fit: contain;
+  object-fit: scale-down;
   max-width: 100%;
   max-height: 100%;
 
