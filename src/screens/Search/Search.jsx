@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import SearchItem from "../../components/SearchItem/SearchItem.jsx";
+import { getRandomInt } from "../../services/myMath.js";
 import axios from "axios";
 import "./Search.css"; 
 
@@ -49,6 +50,7 @@ function Search() {
             <SearchItem 
               item={item}
               key={idx}
+              size={`${getRandomInt(5,20)}rem`}
             />
             ))
           :

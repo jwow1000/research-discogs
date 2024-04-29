@@ -1,0 +1,18 @@
+#root-SearchItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: pink;
+
+  /* animation */
+  transition: 
+    width 1s,
+    height 1s
+  ;
+}
+
+#img-SearchItem {
+  object-fit: contain;
+  max-width: 90%;
+  max-height: 90%;
+}
