@@ -51,3 +51,29 @@
   padding: 0.3rem;
   font-size: 3rem;
 }
+
+.links-SearchItem {
+  position: fixed;
+  top: 90%;
+  backdrop-filter: invert(70%);
+  font-size: 5vw;
+  color: rgb(78, 11, 11);
+  z-index: 100;
+}
+
+.links:hover {
+  background-color: rgb(100, 50, 200, 0.4);
+}
+
+#dicogsLink-SearchItem {
+  left: 5vw;
+}
+
+#researchLink-SearchItem {
+  left: 50vw;
+  transform: translateX(-50%);
+}
+
+#youtubeLink-SearchItem {
+  right: 5vw;
+}

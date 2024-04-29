@@ -1,11 +1,27 @@
 import { useEffect, useState } from "react";
 import { checkPathGif } from "../../services/helpers";
+import axios from "axios";
 import "./SearchItem.css";
+
+const base = "https://api.discogs.com";
+const project = "reSearchDiscogs/1.1 +https://github.com/jwow1000/research-discogs"
+const token = process.env.REACT_APP_API_TOKEN;
+const headers = { headers: {'User-Agent': project } };
 
 function SearchItem({item, size}) {
   const [focus, setFocus] = useState(false);
   const [imgCheck, setImgCheck] = useState(false);
   const [imgPath, setImgPath] = useState('');
+  const [resUrl, setResUrl] = useState('');
+  const [uri, setUri] = useState('');
+  
+  // console.log("lemme see", item);
+  useEffect(() => {
+    const path = handleImgPath(item);
+    setImgPath( path );
+    setResUrl( item.resource_url );
+    setUri( `https://www.discogs.com/${item.uri}`)
+  }, [item])
 
   const handleClick = () => {
     if(focus) {
@@ -34,10 +50,53 @@ function SearchItem({item, size}) {
     }
   }
 
-  useEffect(() => {
-    const path = handleImgPath(item);
-    setImgPath( path );
-  }, [item])
+  // fetch call to take user to first youtube link
+  function handleVideoLink() {
+    async function fetchVideoLink() {
+      console.log("wahttt", `${resUrl}&token=${token}`)
+      try {
+        const response = await axios.get(
+          `${resUrl}`, {
+          headers: {
+            "User-Agent": project
+          },
+        });
+        console.log(response.data);
+        const point = response.data.videos;
+        if (point) {
+          window.open(point[0].uri, "_blank");
+        } else {
+          alert("no videos available");
+        }
+      } catch(error) {
+        console.log(error);
+      }
+    }
+    fetchVideoLink();
+  }
+
+  function handleDiscLink() {
+    const path = uri;
+    window.open(path, "_blank");
+  }
+
+  function Links() {
+    if (focus) {
+      return (
+        <div>
+          <div className="links-SearchItem" id="dicogsLink-SearchItem" onClick={handleDiscLink}>
+            discogs
+          </div>
+          {/* <div className="links-SearchItem" id="researchLink-SearchItem" onClick={handleReSearch}>
+            reSearch
+          </div> */}
+          <div className="links-SearchItem" id="youtubeLink-SearchItem" onClick={handleVideoLink}>
+            youtube
+          </div>
+        </div>
+      );
+    }
+  }
 
   return (
     <div 
@@ -69,6 +128,10 @@ function SearchItem({item, size}) {
             >{item.title}</p>
         }
       </div>
+      {
+        focus &&
+        <Links />
+      }
     </div>
   )
 }

@@ -25,7 +25,7 @@ function Search() {
     async function fetchSearch(sTerm, pageNum) {
       try {
         const response = await axios.get(
-          `${base}/database/search?q=${sTerm}&type=all&token=${token}&page=${pageNum}&per_page=10`,
+          `${base}/database/search?q=${sTerm}&type=all&token=${token}&page=${pageNum}&per_page=20`,
           headers
         );
         // return the response data 
