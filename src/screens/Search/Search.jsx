@@ -20,7 +20,7 @@ function Search() {
 
   // when a term or page is updated
   useEffect(() => {
-    // console.log("Search print: ", term, page)
+    console.log("Search print: ", term, page, token)
     // define async function with axios get
     async function fetchSearch(sTerm, pageNum) {
       try {
