@@ -6,13 +6,44 @@
 
   /* animation */
   transition: 
-    width 1s,
-    height 1s
+    width 3s,
+    height 3s
   ;
+}
+
+#imgContainer-SearchItem {
+  object-fit: contain;
+  max-width: 90%;
+  max-height: 90%;
+  
+}
+
+#imgContainer-SearchItem.focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 #img-SearchItem {
   object-fit: contain;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
+
+}
+
+#img-SearchItem.focus {
+  object-fit: contain;
+  max-width: 80%;
+  max-height: 80%;
+
+  
 }
