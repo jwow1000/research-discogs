@@ -1,20 +1,18 @@
 import axios from "axios";
+
 const base = "https://api.discogs.com";
 const project = "reSearchDiscogs/1.1 +https://github.com/jwow1000/research-discogs"
-
+const token = process.env.REACT_APP_API_TOKEN;
+const headers = { headers: {'User-Agent': project } };
 // fetch call for search, return json object
-export const fetchSearch = async (sTerm, pageNum) => {
-  console.log('token',process.env.REACT_APP_API_TOKEN);
+export async function fetchSearch(sTerm, pageNum) {
   try {
     const response = await axios.get(
-      `${base}/database/search?q=${sTerm}&type=all&token=${process.env.REACT_APP_API_TOKEN}&page=${pageNum}&per_page=10`,
-      {
-        headers: {
-          'User-Agent': project 
-        }
-      }
+      `${base}/database/search?q=${sTerm}&type=all&token=${token}&page=${pageNum}&per_page=10`,
+      headers
     );
-    // set search results with the data
+    // return the response data 
+    console.log('fire the fetch', response.data);
     return response.data;
 
   } catch (error) {
@@ -23,11 +21,10 @@ export const fetchSearch = async (sTerm, pageNum) => {
 
 };
 
-
 // fetch call to take user to first youtube link
 export async function handleVideoLink( resource_url ) {
   const response = await axios.get(
-    `${resource_url}&token=${process.env.REACT_APP_API_TOKEN}`, {
+    `${resource_url}&token=${token}`, {
     headers: {
       "User-Agent": project
     },

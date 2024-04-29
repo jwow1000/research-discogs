@@ -1,12 +1,11 @@
-import { NavLink } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import './Home.css';
 
-function Home({ handleSubmit }) {
+function Home() {
   
   return (
     <div id="root-Home">
-      <SearchBar handleSubmit={handleSubmit} />
+      <SearchBar />
     </div>
   )
 }
