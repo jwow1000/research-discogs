@@ -1,0 +1,26 @@
+#root-PageNav {
+  padding: 0;
+  margin: 1rem 0;
+  border: 0.1rem solid black;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  
+}
+
+#root-PageNav:hover {
+  cursor: crosshair;
+}
+
+.links-PageNav {
+  width: 3rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.linksActive-PageNav {
+  width: 3rem;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: aquamarine;
+}

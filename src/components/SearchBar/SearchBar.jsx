@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PageNav from '../PageNav/PageNav.jsx';
 import './SearchBar.css'
 
 // use a handle submit function as prop with a searchterm paramater
@@ -19,7 +20,7 @@ function SearchBar({ state }) {
     e.preventDefault();
     const term = e.target[0].value;
     const str = `../search/${term}/1`;
-    console.log("nav string", str)
+    // console.log("nav string", str)
     navigate(str);
   };
 

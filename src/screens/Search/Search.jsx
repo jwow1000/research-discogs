@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import SearchItem from "../../components/SearchItem/SearchItem.jsx";
+import PageNav from "../../components/PageNav/PageNav.jsx";
 import { getRandomInt } from "../../services/myMath.js";
 import axios from "axios";
 import "./Search.css"; 
@@ -17,32 +18,48 @@ function Search() {
   const {term, page} = useParams();
   // useStates
   const [searchResults, setSearchResults] = useState([]);
-
-  // when a term or page is updated
+  const [pageAmt, setPageAmt] = useState(0);
+  const [pageChange, setPageChange] = useState(1);
+  
+  async function fetchSearch(sTerm, pageNum) {
+    try {
+      const response = await axios.get(
+        `${base}/database/search?q=${sTerm}&type=all&token=${token}&page=${pageNum}&per_page=20`,
+        headers
+      );
+      // return the response data 
+      setSearchResults( response.data );
+      // set the page number
+      setPageChange(pageNum);
+      // set the page amount
+      const p = response.data.pagination.pages;
+      const setP = (p > 10) ? 10 : p;
+      setPageAmt(setP);
+  
+    } catch (error) {
+      console.log(error);
+    }
+  
+  };
+  // use effect for new params 
   useEffect(() => {
     console.log("Search print: ", term, page, token)
-    // define async function with axios get
-    async function fetchSearch(sTerm, pageNum) {
-      try {
-        const response = await axios.get(
-          `${base}/database/search?q=${sTerm}&type=all&token=${token}&page=${pageNum}&per_page=20`,
-          headers
-        );
-        // return the response data 
-        setSearchResults( response.data );
-    
-      } catch (error) {
-        console.log(error);
-      }
-    
-    };
     // call the function
     fetchSearch(term, page);
   },[term, page])
 
+  useEffect(() => {
+    fetchSearch(term, pageChange);
+  },[pageChange])
+
   return (
     <div id="root-Search">
       <SearchBar state={term}/> 
+      <PageNav 
+        setPageChange={setPageChange} 
+        pageChange={pageChange}
+        pageAmt={pageAmt}
+      />
       <div id="gallery-Search">
         {
           (searchResults.results) ?
