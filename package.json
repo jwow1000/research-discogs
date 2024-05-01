@@ -2,7 +2,7 @@
   "name": "research",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://jwow1000.github.io/research-discogs",
+  "homepage": "http://jwow1000.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
