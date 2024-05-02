@@ -36,3 +36,20 @@ export async function handleVideoLink( resource_url ) {
     alert("no videos available");
   }
 }
+
+export async function fetchReleaseMax() {
+  try {
+    const response = await axios.get(
+      `${base}/database/search?&sort=date_added&type=release&token=${token}&page=1&per_page=1`,
+      headers
+    );
+    // return the response data 
+    // setSearchResults( response.data );
+    console.log("max release id?", response);
+
+  } catch (error) {
+    console.log(error);
+  }
+
+};
+

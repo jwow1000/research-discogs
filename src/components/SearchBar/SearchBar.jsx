@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PageNav from '../PageNav/PageNav.jsx';
 import './SearchBar.css'
 
 // use a handle submit function as prop with a searchterm paramater
-function SearchBar({ state }) {
+function SearchBar({ state, pageIdx }) {
   const navigate = useNavigate();
   
   // states
@@ -24,6 +23,7 @@ function SearchBar({ state }) {
     navigate(str);
   };
 
+
   useEffect(() => {
     if(state) {
       setSearchTerm(state);
@@ -31,21 +31,24 @@ function SearchBar({ state }) {
   }, [state])
 
   return (
-    <form 
-      onSubmit={ handleSubmit }
-      id="form-SearchBar"
-    >
-      <label >
-        Search A Term
-        <input 
-          id="input-SearchBar"
-          onChange={handleChange}
-          type="text" 
-          value={searchTerm}
-          autoComplete='off'
-        />  
-      </label>
-    </form>
+    <div id="root-SearchBar">
+
+      <form 
+        onSubmit={ handleSubmit }
+        id="form-SearchBar"
+      >
+        <label >
+          Search A Term
+          <input 
+            id="input-SearchBar"
+            onChange={handleChange}
+            type="text" 
+            value={searchTerm}
+            autoComplete='off'
+          />  
+        </label>
+      </form>
+    </div>
   )
 }
 

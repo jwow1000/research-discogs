@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import SearchItem from "../../components/SearchItem/SearchItem.jsx";
 import PageNav from "../../components/PageNav/PageNav.jsx";
@@ -14,12 +14,14 @@ const headers = { headers: {'User-Agent': project } };
 
 
 function Search() {
+  console.log('did search open up?')
+  const navigate = useNavigate();
   // get the Params form the url
   const {term, page} = useParams();
   // useStates
   const [searchResults, setSearchResults] = useState([]);
   const [pageAmt, setPageAmt] = useState(0);
-  const [pageChange, setPageChange] = useState(1);
+  const [pageIdx, setPageIdx] = useState(1);
   
   async function fetchSearch(sTerm, pageNum) {
     try {
@@ -29,8 +31,7 @@ function Search() {
       );
       // return the response data 
       setSearchResults( response.data );
-      // set the page number
-      setPageChange(pageNum);
+      
       // set the page amount
       const p = response.data.pagination.pages;
       const setP = (p > 10) ? 10 : p;
@@ -41,23 +42,30 @@ function Search() {
     }
   
   };
+  
   // use effect for new params 
   useEffect(() => {
-    console.log("Search print: ", term, page, token)
+    // console.log("Search print: ", term, page, token)
     // call the function
     fetchSearch(term, page);
+    setPageIdx(page);
+    console.log("pageCHange", pageIdx)
   },[term, page])
-
-  useEffect(() => {
-    fetchSearch(term, pageChange);
-  },[pageChange])
+  
+  // use effect for new page 
+  
+    const str = `../search/${term}/${pageIdx}`;
+    // console.log("nav string", str)
+    navigate(str);
+  
+  
 
   return (
     <div id="root-Search">
       <SearchBar state={term}/> 
       <PageNav 
-        setPageChange={setPageChange} 
-        pageChange={pageChange}
+        pageIdx={page}
+        setPageIdx={setPageIdx} 
         pageAmt={pageAmt}
       />
       <div id="gallery-Search">
