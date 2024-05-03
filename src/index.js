@@ -1,16 +1,44 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router} from 'react-router-dom';
-import './index.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from "./screens/Home/Home.jsx";
+import Search, {loader as searchLoader}  from "./screens/Search/Search.jsx"; 
+import ErrorPage from "./screens/Error/Error.jsx";
+import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const router = createBrowserRouter([
+  {
+    element: <Home />,
+    path: "/",
+    errorElement: <ErrorPage />,
+    // put a pre-load get max amount of releases bit of code
+    // for random release button  
+    children: [
+      {
+        element: <Search />,
+        path: "/search/:term/:page",
+        loader: async({request, params}) => {
+          return searchLoader(params.term, params.page);
+        }
+        // loader: fetchSearch({term, params})
+      }
+
+    ]
+  },
+  
+]);
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-      <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

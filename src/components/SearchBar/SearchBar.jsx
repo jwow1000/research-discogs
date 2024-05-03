@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Form } from 'react-router-dom';
 import './SearchBar.css'
 
 // use a handle submit function as prop with a searchterm paramater
@@ -33,7 +33,7 @@ function SearchBar({ state, pageIdx }) {
   return (
     <div id="root-SearchBar">
 
-      <form 
+      <Form 
         onSubmit={ handleSubmit }
         id="form-SearchBar"
       >
@@ -47,7 +47,7 @@ function SearchBar({ state, pageIdx }) {
             autoComplete='off'
           />  
         </label>
-      </form>
+      </Form>
     </div>
   )
 }

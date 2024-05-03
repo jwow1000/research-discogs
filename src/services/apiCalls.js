@@ -4,6 +4,7 @@ const base = "https://api.discogs.com";
 const project = "reSearchDiscogs/1.1 +https://github.com/jwow1000/research-discogs"
 const token = process.env.REACT_APP_API_TOKEN;
 const headers = { headers: {'User-Agent': project } };
+
 // fetch call for search, return json object
 export async function fetchSearch(sTerm, pageNum) {
   try {
