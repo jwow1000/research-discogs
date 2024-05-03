@@ -3,15 +3,14 @@ import { useNavigate, Form } from 'react-router-dom';
 import './SearchBar.css'
 
 // use a handle submit function as prop with a searchterm paramater
-function SearchBar({ state, pageIdx }) {
+function SearchBar({ setSearchTerm }) {
   const navigate = useNavigate();
   
-  // states
-  const [searchTerm, setSearchTerm] = useState("");
+  const [term, setTerm] = useState("");
 
   // handle the state change of the searchTerm
   const handleChange = (e) => {
-    setSearchTerm( e.target.value );
+    setTerm( e.target.value );
   }
   
   // handle the submit
@@ -23,12 +22,6 @@ function SearchBar({ state, pageIdx }) {
     navigate(str);
   };
 
-
-  useEffect(() => {
-    if(state) {
-      setSearchTerm(state);
-    }
-  }, [state])
 
   return (
     <div id="root-SearchBar">
@@ -43,7 +36,7 @@ function SearchBar({ state, pageIdx }) {
             id="input-SearchBar"
             onChange={handleChange}
             type="text" 
-            value={searchTerm}
+            value={term}
             autoComplete='off'
           />  
         </label>

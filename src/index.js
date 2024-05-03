@@ -5,25 +5,23 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./screens/Home/Home.jsx";
+import Root , {action as rootAction } from "./screens/Root/Root.jsx";
 import Search, {loader as searchLoader}  from "./screens/Search/Search.jsx"; 
 import ErrorPage from "./screens/Error/Error.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
-    element: <Home />,
+    element: <Root />,
     path: "/",
     errorElement: <ErrorPage />,
-    // put a pre-load get max amount of releases bit of code
-    // for random release button  
+    // loader: ,
+    action: rootAction,
     children: [
       {
         element: <Search />,
         path: "/search/:term/:page",
-        loader: async({request, params}) => {
-          return searchLoader(params.term, params.page);
-        }
+        loader: searchLoader 
         // loader: fetchSearch({term, params})
       }
 

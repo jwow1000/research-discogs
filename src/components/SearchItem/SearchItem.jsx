@@ -53,7 +53,7 @@ function SearchItem({item, size}) {
   // fetch call to take user to first youtube link
   function handleVideoLink() {
     async function fetchVideoLink() {
-      console.log("wahttt", `${resUrl}&token=${token}`)
+      // console.log("wahttt", `${resUrl}&token=${token}`)
       try {
         const response = await axios.get(
           `${resUrl}`, {
@@ -61,7 +61,7 @@ function SearchItem({item, size}) {
             "User-Agent": project
           },
         });
-        console.log(response.data);
+        // console.log(response.data);
         const point = response.data.videos;
         if (point) {
           window.open(point[0].uri, "_blank");
