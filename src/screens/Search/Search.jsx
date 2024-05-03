@@ -9,11 +9,16 @@ import "./Search.css";
 
 
 function Search() {
-  // loader data
+  // get the loader data
   const searchResults = useLoaderData();
+  // parse the array out of results
   const dataArray = searchResults.results;
-  console.log("searchResults", searchResults.results)
+  // console.log("searchResults", searchResults.results)
+  // navigate function
   const navigate = useNavigate();
+  const [pageAmt, setPageAmt] = useState(0);
+  const [pageIdx, setPageIdx] = useState(0);
+
 
 
   if (navigate.state === "loading") {
