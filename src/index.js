@@ -13,6 +13,7 @@ import "./index.css";
 const router = createBrowserRouter([
   {
     element: <Root />,
+    basename: "/research-discogs",
     path: "/",
     errorElement: <ErrorPage />,
     // loader: ,
