@@ -2,7 +2,7 @@
   "name": "reSearch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jwow1000.github.io/research-discogs",
+  "homepage": "https://jwow1000.github.io/research-discogs/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
