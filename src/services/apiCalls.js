@@ -8,6 +8,7 @@ const headers = { headers: {'User-Agent': project } };
 // fetch call for search, return json object
 export async function fetchSearch(sTerm, pageNum) {
   try {
+    console.log("check on the enviornment", token);
     const response = await axios.get(
       `${base}/database/search?q=${sTerm}&type=all&token=${token}&page=${pageNum}&per_page=20`,
       headers
