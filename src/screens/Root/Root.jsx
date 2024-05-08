@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { 
   Outlet, 
   Form, 
@@ -11,7 +10,7 @@ export async function action({ request, params }) {
   console.log("is this triggered? Root action")
   const formData = await request.formData();
   const term = formData.get("search-bar");
-  return redirect(`/search/${term}/1`);
+  return redirect(`search/${term}/1`);
 }
 
 function Root() {

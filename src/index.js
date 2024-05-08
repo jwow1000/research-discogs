@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         element: <Search />,
-        path: "/search/:term/:page",
+        path: "search/:term/:page",
         loader: searchLoader 
         // loader: fetchSearch({term, params})
       }
