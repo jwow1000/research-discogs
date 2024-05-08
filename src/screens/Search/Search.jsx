@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate, useLoaderData } from "react-router-dom";
-import SearchBar from "../../components/SearchBar/SearchBar.jsx";
+import { useNavigate, useLoaderData } from "react-router-dom";
 import SearchItem from "../../components/SearchItem/SearchItem.jsx";
-import PageNav from "../../components/PageNav/PageNav.jsx";
 import { getRandomInt } from "../../services/myMath.js";
 import { fetchSearch } from "../../services/apiCalls.js";
 import "./Search.css"; 
@@ -16,10 +13,6 @@ function Search() {
   // console.log("searchResults", searchResults.results)
   // navigate function
   const navigate = useNavigate();
-  const [pageAmt, setPageAmt] = useState(0);
-  const [pageIdx, setPageIdx] = useState(0);
-
-
 
   if (navigate.state === "loading") {
     return <h1>Loading!</h1>;
