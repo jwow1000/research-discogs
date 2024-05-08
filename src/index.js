@@ -13,7 +13,7 @@ import "./index.css";
 const router = createBrowserRouter([
   {
     element: <Root />,
-    basename: "/research-discogs",
+    basename: "/research-discogs/",
     path: "/",
     errorElement: <ErrorPage />,
     // loader: ,
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         element: <Search />,
-        path: "search/:term/:page",
+        path: "/search/:term/:page",
         loader: searchLoader 
         // loader: fetchSearch({term, params})
       }
