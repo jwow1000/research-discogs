@@ -1,11 +1,12 @@
 #root-PageNav {
-  padding: 0;
-  margin: 1rem 0;
-  border: 0.1rem solid black;
+  /* padding: 0 4rem; */
+  margin: 1rem auto;
+  width: 80vw;
+  /* border: 0.1rem solid black; */
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  
+  gap: 0.3rem;
 }
 
 #root-PageNav:hover {
@@ -14,12 +15,15 @@
 
 .links-PageNav {
   width: 3rem;
+  font-weight: bold;
   text-align: center;
   font-size: 1.5rem;
+  background-color: rgb(181, 182, 182);
 }
 
 .linksActive-PageNav {
   width: 3rem;
+  font-weight: bold;
   text-align: center;
   font-size: 1.5rem;
   background-color: aquamarine;

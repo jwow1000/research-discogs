@@ -1,15 +1,33 @@
+import { useState, useEffect } from "react";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import SearchItem from "../../components/SearchItem/SearchItem.jsx";
+import PageNav from "../../components/PageNav/PageNav.jsx";
 import { getRandomInt } from "../../services/myMath.js";
 import { fetchSearch } from "../../services/apiCalls.js";
 import "./Search.css"; 
 
 
 function Search() {
+  const [pageIdx, setPageIdx] = useState(0);
   // get the loader data
-  const searchResults = useLoaderData();
+  const loaderData = useLoaderData();
+  const searchResults = loaderData.results;
+  const searchTerm = loaderData.term;
+
+  console.log("lets look at the results", searchResults)
+  const getPages = searchResults.pagination.pages;
+  const getPage = searchResults.pagination.page;
+  const pageAmt = (getPages > 10) ? 10 : getPages;
+  
+  useEffect(() => {
+    setPageIdx( getPage ); 
+
+  }, [getPage])
+  
+
+
   // parse the array out of results
-  const dataArray = searchResults.results;
+  const dataArray = searchResults;
   // console.log("searchResults", searchResults.results)
   // navigate function
   const navigate = useNavigate();
@@ -20,11 +38,11 @@ function Search() {
 
   return (
     <div id="root-Search">
-      {/* <PageNav 
-        pageIdx={page}
-        setPageIdx={setPageIdx} 
+      <PageNav 
         pageAmt={pageAmt}
-      /> */}
+        pageIdx={pageIdx}
+        searchTerm={searchTerm}
+      />
       <div id="gallery-Search">
         {
           (dataArray) ?
@@ -39,6 +57,11 @@ function Search() {
             null
         }
       </div>
+      <PageNav 
+        pageAmt={pageAmt}
+        pageIdx={pageIdx}
+        searchTerm={searchTerm}
+      />
       
     </div>
   )
@@ -49,5 +72,5 @@ export default Search;
 // the loader grabbing term and page params
 export async function loader( {params} ) {
   const results = await fetchSearch(params.term, params.page);
-  return { results };
+  return { "results": results, "term": params.term };
 };

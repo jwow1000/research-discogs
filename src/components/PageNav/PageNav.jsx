@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./PageNav.css";
 
-function PageNav( {pageAmt, setPageIdx, pageIdx }) {
+function PageNav( {pageAmt, pageIdx, searchTerm }) {
   const [pageArray, setPageArray] = useState([]);
 
   useEffect(() => {
@@ -11,8 +12,8 @@ function PageNav( {pageAmt, setPageIdx, pageIdx }) {
     }
     setPageArray(arr);
   }, [pageAmt]) 
-  
-  console.log("index of page in PageNav",pageIdx)
+
+  // console.log("index of page in PageNav",pageIdx)
   
   function linkClass(item) {
     return (pageIdx === item) ? "linksActive-PageNav" : "links-PageNav"
@@ -23,13 +24,23 @@ function PageNav( {pageAmt, setPageIdx, pageIdx }) {
       {
         pageArray && pageArray.map((item, idx) => {
           // console.log("item idx?", item, idx, pageIdx)
-          return (<div 
-            className={linkClass(item)}
-            key={idx}
-            onClick={ () => {setPageIdx(item)} }
-          >
-            {item}
-          </div> ) 
+          return (
+            <NavLink
+              style={{"textDecoration": "none"}}
+              to={`../search/${searchTerm}/${item}`}
+              className={linkClass(item)}
+              key={idx}
+            >
+              {item}
+            </NavLink>
+            // <div 
+            //   className={linkClass(item)}
+            //   key={idx}
+            //   onClick={ pageChange(searchTerm, item) }
+            // >
+            //   
+            // </div> 
+          ) 
         })
       }
     </div>

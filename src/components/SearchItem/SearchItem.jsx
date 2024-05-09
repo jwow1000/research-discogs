@@ -12,7 +12,7 @@ function SearchItem({item, size}) {
   const [resUrl, setResUrl] = useState('');
   const [uri, setUri] = useState('');
   
-  // console.log("lemme see", item);
+  console.log("lemme see", item);
   useEffect(() => {
     const path = handleImgPath(item);
     setImgPath( path );
@@ -61,7 +61,9 @@ function SearchItem({item, size}) {
         // console.log(response.data);
         const point = response.data.videos;
         if (point) {
-          window.open(point[0].uri, "_blank");
+          const path = point[0].uri;
+          // console.log("path", path);
+          window.open(path, "discogs_link", 'noopener noreferrer');
         } else {
           alert("no videos available");
         }
@@ -74,7 +76,17 @@ function SearchItem({item, size}) {
 
   function handleDiscLink() {
     const path = uri;
-    window.open(path, "_blank");
+    window.open(path, "discogs_link", 'noopener noreferrer');
+  }
+  function handleSpotifyLink() {
+    let term = "";
+    if(item.title) {
+      term = item.title;
+    } else if(item.name) {
+      term = item.name
+    }
+    const link = `https://open.spotify.com/search/${term}` 
+    window.open(link, "discogs_link", 'noopener noreferrer');
   }
 
   function Links() {
@@ -84,9 +96,9 @@ function SearchItem({item, size}) {
           <div className="links-SearchItem" id="dicogsLink-SearchItem" onClick={handleDiscLink}>
             discogs
           </div>
-          {/* <div className="links-SearchItem" id="researchLink-SearchItem" onClick={handleReSearch}>
-            reSearch
-          </div> */}
+          <div className="links-SearchItem" id="researchLink-SearchItem" onClick={handleSpotifyLink}>
+            spotify 
+          </div>
           <div className="links-SearchItem" id="youtubeLink-SearchItem" onClick={handleVideoLink}>
             youtube
           </div>

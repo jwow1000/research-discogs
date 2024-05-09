@@ -1,5 +1,6 @@
 #root-SearchItem {
   display: flex;
+  flex-grow: 0.5;
   justify-content: center;
   align-items: center;
   background-color: pink;
@@ -54,15 +55,16 @@
 
 .links-SearchItem {
   position: fixed;
-  top: 90%;
+  top: 80%;
   backdrop-filter: invert(70%);
-  font-size: 5vw;
+  font-size: 2rem;
   color: rgb(78, 11, 11);
   z-index: 100;
 }
 
-.links:hover {
+.links-SearchItem:hover {
   background-color: rgb(100, 50, 200, 0.4);
+  cursor: pointer;
 }
 
 #dicogsLink-SearchItem {

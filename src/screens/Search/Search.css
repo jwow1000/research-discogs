@@ -1,9 +1,15 @@
 #gallery-Search {
-  width: 100%;
+  margin: 0 auto;
+  max-width: 100%;
   min-height: 100vh;
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 
+
+
+@media screen {
+  
+}
