@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getRandomInt } from "./myMath.js";
 
 const base = "https://api.discogs.com";
 const project = "reSearchDiscogs/1.1 +https://github.com/jwow1000/research-discogs"
@@ -13,7 +14,7 @@ export async function fetchSearch(sTerm, pageNum) {
       headers
     );
     // return the response data 
-    console.log('fire the fetch', response.data);
+    // console.log('fire the fetch', response.data);
     return response.data;
 
   } catch (error) {
@@ -41,16 +42,33 @@ export async function handleVideoLink( resource_url ) {
 export async function fetchReleaseMax() {
   try {
     const response = await axios.get(
-      `${base}/database/search?&sort=date_added&type=release&token=${token}&page=1&per_page=1`,
+      `${base}/database/search?&sort=date_added&token=${token}&page=1&per_page=1`,
       headers
     );
     // return the response data 
     // setSearchResults( response.data );
-    console.log("max release id?", response);
-
+    console.log("max release id?", response.data.results[0].id );
+    return response.data.results[0].id;
   } catch (error) {
     console.log(error);
   }
 
 };
 
+// fetch random release
+export async function fetchRandom(max) {
+  try {
+    const num = getRandomInt(1,max);
+    const response = await axios.get(
+      `${base}/releases/${num}`,
+      headers
+    );
+    // return the response data 
+    console.log('fire the random', response.data);
+    return response.data;
+
+  } catch (error) {
+    console.log(error);
+  }
+
+};

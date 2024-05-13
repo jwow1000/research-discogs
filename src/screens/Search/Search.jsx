@@ -11,6 +11,7 @@ function Search() {
   const [pageIdx, setPageIdx] = useState(0);
   // get the loader data
   const loaderData = useLoaderData();
+  
   const searchResults = loaderData.results;
   const searchTerm = loaderData.term;
 
@@ -45,7 +46,7 @@ function Search() {
       />
       <div id="gallery-Search">
         {
-          (dataArray) ?
+          (searchResults && dataArray) ?
             dataArray.results.map((item, idx) => (
             <SearchItem 
               item={item}
@@ -71,6 +72,11 @@ export default Search;
 
 // the loader grabbing term and page params
 export async function loader( {params} ) {
-  const results = await fetchSearch(params.term, params.page);
-  return { "results": results, "term": params.term };
+  try {
+    const results = await fetchSearch(params.term, params.page);
+    return { "results": results, "term": params.term };
+
+  } catch (error) {
+    return {"results": null, "term": params.term}
+  }
 };

@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Root , {action as rootAction } from "./screens/Root/Root.jsx";
+import Root , {action as rootAction, loader as rootLoader } from "./screens/Root/Root.jsx";
 import Search, {loader as searchLoader}  from "./screens/Search/Search.jsx"; 
 import ErrorPage from "./screens/Error/Error.jsx";
 import "./index.css";
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <Root />,
     path: "/",
     errorElement: <ErrorPage />,
-    // loader: ,
+    loader: rootLoader,
     action: rootAction,
     children: [
       {

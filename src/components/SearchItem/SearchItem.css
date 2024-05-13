@@ -47,6 +47,7 @@
   max-width: 80%;
   max-height: 80%;
 }
+
 #p-SearchItem {
   background-color: white;
   padding: 0.3rem;
@@ -57,8 +58,9 @@
   position: fixed;
   top: 80%;
   backdrop-filter: invert(70%);
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: rgb(78, 11, 11);
+  padding: 0.4rem;
   z-index: 100;
 }
 
@@ -78,4 +80,19 @@
 
 #youtubeLink-SearchItem {
   right: 5vw;
+}
+
+/* scale for smaller windows and tablets */
+@media (min-width: 600px) and (max-width: 1199px) {
+  .links-SearchItem {
+    font-size: 2rem;
+  } 
+}
+
+/* scale for laptops/PC and large screens */
+@media (min-width: 1200px) {
+  .links-SearchItem {
+    font-size: 2rem;
+  } 
+
 }

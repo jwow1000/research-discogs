@@ -12,12 +12,12 @@ function SearchItem({item, size}) {
   const [resUrl, setResUrl] = useState('');
   const [uri, setUri] = useState('');
   
-  console.log("lemme see", item);
+  // console.log("lemme see", item);
   useEffect(() => {
     const path = handleImgPath(item);
     setImgPath( path );
     setResUrl( item.resource_url );
-    setUri( `https://www.discogs.com/${item.uri}`)
+    setUri( `https://www.discogs.com${item.uri}`)
   }, [item])
 
   const handleClick = () => {
@@ -76,6 +76,7 @@ function SearchItem({item, size}) {
 
   function handleDiscLink() {
     const path = uri;
+    // console.log("discogs path", path, uri);
     window.open(path, "discogs_link", 'noopener noreferrer');
   }
   function handleSpotifyLink() {
@@ -85,7 +86,8 @@ function SearchItem({item, size}) {
     } else if(item.name) {
       term = item.name
     }
-    const link = `https://open.spotify.com/search/${term}` 
+    const link = `https://open.spotify.com/search/${term}`;
+    // const link = `spotify:search:${term}`;
     window.open(link, "discogs_link", 'noopener noreferrer');
   }
 

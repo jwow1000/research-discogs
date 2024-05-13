@@ -1,9 +1,24 @@
 #root-Root {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   /* width: 100vw;   */
+}
+
+#formContainer-Root {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#form-Root {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.3rem;
 }
 
 #label-Root {
@@ -18,9 +33,14 @@
 }
 
 #submitButt-Root {
-  display: block;
-  margin: 0.3rem auto 0 auto;
   font-size: 1.5rem;
   height: 2rem;
   width: 8rem;
+}
+
+#randomButt-Root {
+  font-size: 0.8rem;
+  height: 2rem;
+  width: 8rem; 
+  background-color: rgb(229, 126, 75);
 }
