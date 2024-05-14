@@ -8,16 +8,26 @@ const project = "reSearchDiscogs/1.1 +https://github.com/jwow1000/research-disco
 function SearchItem({item, size}) {
   const [focus, setFocus] = useState(false);
   const [imgCheck, setImgCheck] = useState(false);
-  const [imgPath, setImgPath] = useState('');
-  const [resUrl, setResUrl] = useState('');
-  const [uri, setUri] = useState('');
+  
+  // combine these into one useState object
+  // const [imgPath, setImgPath] = useState('');
+  // const [resUrl, setResUrl] = useState('');
+  // const [uri, setUri] = useState('');
+
+  const [itemInfo, setItemInfo] = useState({});
   
   // console.log("lemme see", item);
   useEffect(() => {
     const path = handleImgPath(item);
-    setImgPath( path );
-    setResUrl( item.resource_url );
-    setUri( `https://www.discogs.com${item.uri}`)
+    setItemInfo({
+      "path": path,
+      "url": item.resource_url,
+      "uri":`https://www.discogs.com${item.uri}`,
+
+    });
+    // setImgPath( path );
+    // setResUrl( item.resource_url );
+    // setUri( `https://www.discogs.com${item.uri}`)
   }, [item])
 
   const handleClick = () => {
@@ -53,7 +63,7 @@ function SearchItem({item, size}) {
       // console.log("wahttt", `${resUrl}&token=${token}`)
       try {
         const response = await axios.get(
-          `${resUrl}`, {
+          `${itemInfo.url}`, {
           headers: {
             "User-Agent": project
           },
@@ -75,7 +85,7 @@ function SearchItem({item, size}) {
   }
 
   function handleDiscLink() {
-    const path = uri;
+    const path = itemInfo.uri;
     // console.log("discogs path", path, uri);
     window.open(path, "discogs_link", 'noopener noreferrer');
   }
@@ -130,7 +140,7 @@ function SearchItem({item, size}) {
               id="img-SearchItem"
               className={(focus) ? "focus" : null}
               onClick={handleClick}
-              src={imgPath} 
+              src={itemInfo.path} 
               alt={`cover for ${item.title}`} 
             />
           :
