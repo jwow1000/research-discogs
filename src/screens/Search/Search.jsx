@@ -22,7 +22,6 @@ function Search() {
   
   useEffect(() => {
     setPageIdx( getPage ); 
-
   }, [getPage])
   
 

@@ -63,7 +63,7 @@ function SearchItem({item, size}) {
         if (point) {
           const path = point[0].uri;
           // console.log("path", path);
-          window.open(path, "discogs_link", 'noopener noreferrer');
+          window.open(path, "youtube", 'noopener noreferrer');
         } else {
           alert("no videos available");
         }
@@ -88,7 +88,9 @@ function SearchItem({item, size}) {
     }
     const link = `https://open.spotify.com/search/${term}`;
     // const link = `spotify:search:${term}`;
-    window.open(link, "discogs_link", 'noopener noreferrer');
+    const win = window.open()
+    win.location = link;
+    // window.open(link, "discogs_link", 'noopener noreferrer');
   }
 
   function Links() {
