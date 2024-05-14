@@ -19,14 +19,20 @@ const handleRandom = async () => {
     let term = "";
     
     if(rando.artists) {
-      term += `${rando.artists[0].name} `;
+      const str = rando.artists[0].name;
+      term += `${str} `;
+      console.log("artiste", term);
     } 
     if(rando.title) {
-      term += `${rando.title} `;
+      const str = rando.title;
+      term += `${str}`;
+      console.log("titleee", term);
       return term;  
     } 
     if(rando.name) {
-      term += `${rando.name}`;
+      const str = rando.name;
+      term += `${str}`;
+      console.log("namen", term);
       return term;
     }
     return term;
@@ -45,11 +51,13 @@ export async function action({ request, params }) {
   // check to see what button
   if( formData.has("random-button") ) {
     const term = await handleRandom();
-    return redirect(`search/${term}/1`); 
+    const filterTerm = term.replace(/[\/?]/g, '');
+    return redirect(`search/${filterTerm}/1`); 
   } else {
     const term = formData.get("search-bar");
     if(term) {
-      return redirect(`search/${term}/1`);
+      const filterTerm = term.replace(/[\/?]/g, '');
+      return redirect(`search/${filterTerm}/1`);
     } else {
       alert("search bar empty!");
       return null;

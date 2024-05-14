@@ -15,7 +15,7 @@ function Search() {
   const searchResults = loaderData.results;
   const searchTerm = loaderData.term;
 
-  console.log("lets look at the results", searchResults)
+  // console.log("lets look at the results", searchResults)
   const getPages = searchResults.pagination.pages;
   const getPage = searchResults.pagination.page;
   const pageAmt = (getPages > 10) ? 10 : getPages;
@@ -49,7 +49,7 @@ function Search() {
             dataArray.results.map((item, idx) => (
             <SearchItem 
               item={item}
-              key={idx}
+              key={`results-${idx}`}
               size={`${getRandomInt(5,20)}rem`}
             />
             ))
