@@ -2,7 +2,7 @@ import axios from "axios";
 import { getRandomInt } from "./myMath.js";
 
 const base = "https://api.discogs.com";
-const project = "reSearchDiscogs/1.1 +https://github.com/jwow1000/research-discogs"
+const project = "reSearchDiscogs/1.2 +https://discogs-research.netlify.app"
 const token = process.env.REACT_APP_API_TOKEN;
 const headers = { headers: {'User-Agent': project } };
 
@@ -14,7 +14,7 @@ export async function fetchSearch(sTerm, pageNum) {
       headers
     );
     // return the response data 
-    // console.log('fire the fetch', response.data);
+    console.log('search response', response);
     return response.data;
 
   } catch (error) {
