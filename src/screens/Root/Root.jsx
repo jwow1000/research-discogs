@@ -51,12 +51,12 @@ export async function action({ request, params }) {
   // check to see what button
   if( formData.has("random-button") ) {
     const term = await handleRandom();
-    const filterTerm = term.replace(/[\/?]/g, '');
+    const filterTerm = term.replace(/[/?]/g, '');
     return redirect(`search/${filterTerm}/1`); 
   } else {
     const term = formData.get("search-bar");
     if(term) {
-      const filterTerm = term.replace(/[\/?]/g, '');
+      const filterTerm = term.replace(/[/?]/g, '');
       return redirect(`search/${filterTerm}/1`);
     } else {
       alert("search bar empty!");
